@@ -1,0 +1,40 @@
+#For now use the same as for developers but start WebGoat
+#In the future we can add Docker as well and then Vagrant can start the
+#Docker container or Chef which setups the Tomcat
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.network :forwarded_port, guest: 8080, host: 9999
+  config.vm.provider "virtualbox" do |vb|
+  	vb.gui = false
+  	vb.memory = "4096"
+  	vb.cpus = 2
+  	vb.name = "WebGoat-workshop"
+	vb.customize ["modifyvm", :id, "--nictype1", "virtio"]
+  end
+  config.vm.provider "vmware_fusion" do |vf|
+    vf.gui = false
+    vf.vmx["memsize"] = 4096
+    vf.vmx["numvcpus"] = 2
+    vf.vmx["displayname"] = "WebGoat-Workshop"
+  end
+
+  config.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
+
+  config.vm.provision 'shell' do |s|
+    s.path = 'vagrant_provision.sh'
+    s.privileged = true
+  end
+
+  config.vm.provision :shell, inline: <<-SHELL
+    echo -e "Downloading WebGoat "
+    wget https://github.com/WebGoat/WebGoat/releases/download/v8.0.0.M2/webgoat-server-8.0.0.M2.jar
+java -jar webgoat-server-8.0.0.M2.jar	
+    SHELL
+
+  config.vm.provision 'shell' do |s|
+    s.inline = "echo Finished provisioning, open a browser and browse to http://localhost:9999/WebGoat/"
+  end
+
+end
+
