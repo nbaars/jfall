@@ -16,7 +16,7 @@ NOTE: Only necessary if the online version is not available.
 ### Using Docker image (Virtual Box)
 
 Copy the Virtual Box image from the USB drive and import it in your local VirtualBox, start the image and point your browser to
-http://localhost:8080
+http://localhost:8080/WebGoat
 
 ### Running jar file
 
