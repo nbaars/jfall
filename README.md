@@ -9,6 +9,12 @@ Download [ZAP](https://github.com/zaproxy/zaproxy/wiki/Downloads) and install it
 Open up a browser and point it to: http://35.203.170.243:8080/WebGoat/
 Register as a new user.
 
+
+
+
+
+
+-------
 ## Run on local machine
 
 NOTE: Only necessary if the online version is not available. 
