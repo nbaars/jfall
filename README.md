@@ -17,7 +17,7 @@ Register as a new user.
 -------
 ## Run on local machine
 
-NOTE: Only necessary if the online version is not available. 
+**NOTE**: Only necessary if the online version is not available. 
 
 ### Using Docker image (Virtual Box)
 
